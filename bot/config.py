@@ -11,7 +11,7 @@ from typing import Dict, List
 # ============================================================
 
 BOT_TOKEN: str = os.getenv("TELEGRAM_TOKEN", "")
-if not BOT_TOKEN:
+if not BOT_TOKEN:=str 8659540823:AAHuxxAbMK-cqSMq-MiaMde3yQ2bI-c8qYY
     raise ValueError("❌ TELEGRAM_TOKEN не найден! Установите переменную окружения.")
 
 FASTAPI_HOST: str = os.getenv("FASTAPI_HOST", "0.0.0.0")
