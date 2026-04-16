@@ -10,18 +10,19 @@ from typing import Dict, List
 #                        ТОКЕНЫ
 # ============================================================
 
-BOT_TOKEN: str = os.getenv("TELEGRAM_TOKEN", "")
-if not BOT_TOKEN:=str 8659540823:AAHuxxAbMK-cqSMq-MiaMde3yQ2bI-c8qYY
-    raise ValueError("❌ TELEGRAM_TOKEN не найден! Установите переменную окружения.")
+BOT_TOKEN: str = os.getenv("TELEGRAM_TOKEN")
+if not BOT_TOKEN:
+    BOT_TOKEN = "8659540823:AAHuxxAbMK-cqSMq-MiaMde3yQ2bI-c8qYY"   # ← исправлено здесь
 
 FASTAPI_HOST: str = os.getenv("FASTAPI_HOST", "0.0.0.0")
 FASTAPI_PORT: int = int(os.getenv("FASTAPI_PORT", "8000"))
-WEBHOOK_URL: str = os.getenv("WEBHOOK_URL", "")  # https://yourdomain.com/webhook
+WEBHOOK_URL: str = os.getenv("WEBHOOK_URL", "")  
 
 # Telegram API для чтения групп (Telethon) — опционально
 TG_API_ID: int = int(os.getenv("TG_API_ID", "0"))
 TG_API_HASH: str = os.getenv("TG_API_HASH", "")
 TG_SESSION_NAME: str = os.getenv("TG_SESSION_NAME", "shopogolik_session")
+
 
 
 # ============================================================
