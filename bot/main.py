@@ -1,15 +1,3 @@
-"""
-Shopogolik Bot v2.0 — Мощный агрегатор объявлений и товаров.
-
-Ищет по сайтам (Avito, Юла, AliExpress, Ozon, Wildberries…)
-и по Telegram-группам барахолок 15+ городов России.
-
-Архитектура:
-  FastAPI + python-telegram-bot v21+
-  Lifespan для инициализации
-  ConversationHandler для FSM
-  Модульные парсеры в parsers/
-"""
 import os
 import logging
 from contextlib import asynccontextmanager
