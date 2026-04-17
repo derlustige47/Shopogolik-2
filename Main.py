@@ -1,11 +1,6 @@
- """
-Shopogolik Bot v2.0 — исправленная версия
-"""
-
 import os
 import logging
 from contextlib import asynccontextmanager
-
 from fastapi import FastAPI, Request, HTTPException
 from telegram import Update
 from telegram.ext import (
