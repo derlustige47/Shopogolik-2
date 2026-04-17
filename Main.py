@@ -65,10 +65,58 @@ async def main_menu_handler(update: Update, context):
         )
         return SearchStates.CATEGORY_SELECT
     return SearchStates.MAIN_MENU
+# ============================================================
+#            CONVERSATION HANDLER (FSM) — ИСПРАВЛЕННЫЙ
+# ============================================================
 
-# ConversationHandler
 conv_handler = ConversationHandler(
-    entry_points=[CommandHandler("start", cmd_start) MessageHandler(filters.TEXT & \~filters.COMMAND, main_menu_handler) MessageHandler(filters.TEXT & \~filters.COMMAND, lambda u,c: u.message.reply_text("Поиск пока в разработке...")) CallbackQueryHandler(lambda u,c: u.callback_query.answer()) CommandHandler("cancel", lambda u,c: u.message.reply_text("Поиск отменён."))],
+    entry_points=[
+        CommandHandler("start", cmd_start)
+    ],
+
+    states={
+        # Главное меню
+        SearchStates.MAIN_MENU: [
+            MessageHandler(filters.TEXT & \~filters.COMMAND, main_menu_handler),
+        ],
+
+        # Ввод ключевых слов
+        SearchStates.KEYWORD_INPUT: [
+            MessageHandler(filters.TEXT & \~filters.COMMAND, keyword_input_handler),
+        ],
+
+        # Выбор категории (inline-кнопки)
+        SearchStates.CATEGORY_SELECT: [
+            CallbackQueryHandler(category_callback, per_message=False),
+        ],
+
+        # Выбор состояния товара (Новое / Б/у / Не важно)
+        SearchStates.CONDITION_SELECT: [
+            CallbackQueryHandler(condition_callback, per_message=False),
+        ],
+
+        # Ввод диапазона цены
+        SearchStates.PRICE_INPUT: [
+            MessageHandler(filters.TEXT & \~filters.COMMAND, price_input_handler),
+        ],
+
+        # Выбор площадок
+        SearchStates.PLATFORM_SELECT: [
+            CallbackQueryHandler(platform_callback, per_message=False),
+        ],
+
+        # Просмотр результатов с пагинацией
+        SearchStates.RESULTS: [
+            CallbackQueryHandler(results_callback, per_message=False),
+        ],
+    },
+
+    fallbacks=[
+        CommandHandler("cancel", cancel_handler),
+    ],
+
+    allow_reentry=True,          # Можно возвращаться в разговор
+    per_message=False,           # Убирает предупреждение PTBUserWarning
 )
 
 # FastAPI + Lifespan
