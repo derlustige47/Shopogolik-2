@@ -12,7 +12,7 @@ from typing import Dict, List
 
 BOT_TOKEN: str = os.getenv("TELEGRAM_TOKEN")
 if not BOT_TOKEN:
-    BOT_TOKEN = "8659540823:AAHuxxAbMK-cqSMq-MiaMde3yQ2bI-c8qYY"
+    BOT_TOKEN: = str "8659540823:AAHuxxAbMK-cqSMq-MiaMde3yQ2bI-c8qYY"
 
 FASTAPI_HOST: str = os.getenv("FASTAPI_HOST", "0.0.0.0")
 FASTAPI_PORT: int = int(os.getenv("FASTAPI_PORT", "8000"))
