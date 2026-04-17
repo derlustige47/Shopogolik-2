@@ -13,16 +13,16 @@ from telegram.ext import (
 )
 
 # Импорты
-from config import BOT_TOKEN, WEBHOOK_URL, CATEGORY_KEYWORDS, RESULTS_PER_PAGE
-from states import SearchStates
-from keyboards import (
+from bot.config import BOT_TOKEN, WEBHOOK_URL, CATEGORY_KEYWORDS, RESULTS_PER_PAGE
+from bot.states import SearchStates
+from bot.keyboards import (
     get_main_menu_keyboard,
     get_categories_keyboard,
     get_condition_keyboard,
     get_platforms_keyboard,
 )
-from parsers.registry import registry, init_parsers
-from parsers.base import Condition
+from bot.parsers.registry import registry, init_parsers
+from bot.parsers.base import Condition
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("shopogolik")
